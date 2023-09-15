@@ -36,11 +36,11 @@ public class Role {
      User   
     }
 
-    public User getIdUSer() {
-        return this.idUSer;
+    public User getUser() {
+        return this.user;
     }                                                                                                           
 
-    public void setIdUSer(User idUSer) {
+    public void setIdUSer(User user) {
         this.user = user;
     }
 
@@ -52,11 +52,11 @@ public class Role {
         this.microservice = microsservice;
     }
 
-    public String getRoleUser() {
+    public userRole getRoleUser() {
         return this.roleUser;
     }
 
-    public void setRoleUser(String roleUser) {
+    public void setRoleUser(userRole roleUser) {
         this.roleUser = roleUser;
     }
 }
