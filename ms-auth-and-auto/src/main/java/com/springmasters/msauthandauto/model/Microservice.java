@@ -1,11 +1,16 @@
 package com.springmasters.msauthandauto.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Microservice {
-    int id;
-    String nameMicroservice;
+    @Id
+    @Column(name = "microservice_id")
+    private int id;
+    @Column(name = "microservice_name")
+    private String nameMicroservice;
 
     public Microservice() {
     }
