@@ -19,6 +19,6 @@ public interface UserMapper {
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
-    @Mapping(source = "email", target = "emil")
+    @Mapping(source = "email", target = "email")
     UserDTOReturn userToUserDTOReturn(User user);
 }
