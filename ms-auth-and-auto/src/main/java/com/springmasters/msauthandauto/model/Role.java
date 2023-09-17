@@ -1,6 +1,4 @@
 package com.springmasters.msauthandauto.model;
-import java.util.Objects;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -22,8 +20,11 @@ public class Role {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;   
+    private User userRole;   
     
+    public static final Integer ADMIN = 1;
+    public static final Integer USER = 1;
+
     @ManyToOne
     @JoinColumn(name = "microservice_id")
     private Microservice microservice;
@@ -31,25 +32,34 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private userRole roleUser;
 
+
+    public Role(Integer idRole, User userRole, Microservice microservice, userRole roleUser) {
+        this.idRole = idRole;
+        this.userRole = userRole;
+        this.microservice = microservice;
+        this.roleUser = roleUser;
+    }
+
+
     public enum userRole{
-     Admin,
-     User   
+     ADMIN,
+     USER   
     }
 
     public User getUser() {
-        return this.user;
+        return this.userRole;
     }                                                                                                           
 
-    public void setIdUSer(User user) {
-        this.user = user;
+    public void setIdUser(User userRole) {
+        this.userRole = userRole;
     }
 
-    public Microservice getMicrosservice() {
+    public Microservice getMicroservice() {
         return this.microservice;
     }
 
-    public void setMicrosservice(Microservice microsservice) {
-        this.microservice = microsservice;
+    public void setMicroservice(Microservice microservice) {
+        this.microservice = microservice;
     }
 
     public userRole getRoleUser() {

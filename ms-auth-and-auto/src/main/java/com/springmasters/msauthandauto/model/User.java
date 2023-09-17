@@ -20,7 +20,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    
+
     @OneToMany
     private List<Role> userRoles;
 
@@ -58,6 +58,16 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+    public List<Role> getUserRoles() {
+        return this.userRoles;
+    }
+
+    public void setUserRoles(List<Role> userRoles) {
+        this.userRoles = userRoles;
+    }
+    
 
     public User(int id, String name, String email, String password) {
         this.id = id;
