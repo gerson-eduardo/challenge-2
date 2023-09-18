@@ -1,4 +1,7 @@
 package com.springmasters.msauthandauto.model;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -20,8 +23,8 @@ public class Role {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userRole;   
-    
+    private User userRole;
+
     public static final Integer ADMIN = 1;
     public static final Integer USER = 1;
 
@@ -40,33 +43,56 @@ public class Role {
         this.roleUser = roleUser;
     }
 
-
-    public enum userRole{
-     ADMIN,
-     USER   
+    public Role(User userRole, Microservice microservice, userRole roleUser) {
+        this.userRole = userRole;
+        this.microservice = microservice;
+        this.roleUser = roleUser;
     }
 
-    public User getUser() {
-        return this.userRole;
-    }                                                                                                           
+    public Role(User userRole, userRole roleUser) {
+        this.userRole = userRole;
+        this.microservice = microservice;
+        this.roleUser = roleUser;
+    }
 
-    public void setIdUser(User userRole) {
+    public Role() {
+    }
+
+    public enum userRole {
+        ADMIN,
+        USER
+    }
+
+    public Integer getIdRole() {
+        return idRole;
+    }
+
+    public void setIdRole(Integer idRole) {
+        this.idRole = idRole;
+    }
+
+    @JsonBackReference
+    public User getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(User userRole) {
         this.userRole = userRole;
     }
 
     public Microservice getMicroservice() {
-        return this.microservice;
+        return microservice;
     }
 
     public void setMicroservice(Microservice microservice) {
         this.microservice = microservice;
     }
 
-    public userRole getRoleUser() {
-        return this.roleUser;
+    public Role.userRole getRoleUser() {
+        return roleUser;
     }
 
-    public void setRoleUser(userRole roleUser) {
+    public void setRoleUser(Role.userRole roleUser) {
         this.roleUser = roleUser;
     }
 }
