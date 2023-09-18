@@ -1,4 +1,5 @@
 package com.springmasters.msauthandauto.DTO;
+
 import java.util.Objects;
 
 public class UserDTOReturn {
@@ -74,10 +75,10 @@ public class UserDTOReturn {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", email='" + getEmail() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", name='" + getName() + "'" +
+                ", email='" + getEmail() + "'" +
+                "}";
     }
-    
+
 }

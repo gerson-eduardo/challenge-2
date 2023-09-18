@@ -3,6 +3,7 @@ package com.springmasters.msauthandauto.DTO;
 import java.util.List;
 
 import com.springmasters.msauthandauto.model.Role;
+
 import java.util.Objects;
 
 public class UserDTO {
@@ -78,10 +79,10 @@ public class UserDTO {
     @Override
     public String toString() {
         return "{" +
-            " name='" + getName() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", userRoles='" + getUserRoles() + "'" +
-            "}";
+                " name='" + getName() + "'" +
+                ", email='" + getEmail() + "'" +
+                ", userRoles='" + getUserRoles() + "'" +
+                "}";
     }
-    
+
 }

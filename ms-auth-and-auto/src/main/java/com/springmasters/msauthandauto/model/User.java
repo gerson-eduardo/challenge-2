@@ -2,29 +2,39 @@ package com.springmasters.msauthandauto.model;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "user_id")
+    @Column(name = "user_id")
     private int id;
     private String name;
     private String email;
     private String password;
 
-    @OneToMany
+    @OneToMany(mappedBy = "userRole", fetch = FetchType.EAGER)
+
     private List<Role> userRoles;
 
-    public User(){
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(int id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User() {
     }
 
     public int getId() {
@@ -59,7 +69,7 @@ public class User {
         this.password = password;
     }
 
-
+    @JsonManagedReference
     public List<Role> getUserRoles() {
         return this.userRoles;
     }
@@ -67,12 +77,6 @@ public class User {
     public void setUserRoles(List<Role> userRoles) {
         this.userRoles = userRoles;
     }
-    
 
-    public User(int id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
+
 }
