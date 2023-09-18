@@ -2,11 +2,15 @@ package com.springmasters.msauthandauto.service;
 
 import com.springmasters.msauthandauto.DTO.Mapper.UserMapper;
 import com.springmasters.msauthandauto.DTO.UserDTO;
+import com.springmasters.msauthandauto.DTO.UserDTOReturn;
 import com.springmasters.msauthandauto.model.User;
 import com.springmasters.msauthandauto.repository.MicroserviceRepository;
 import com.springmasters.msauthandauto.repository.RoleRepository;
 import com.springmasters.msauthandauto.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,23 +29,25 @@ public class UserService {
         this.roleRepository = roleRepository;
     }
 
-    public User createUser(User user) {
+    public ResponseEntity<Object> createUser(User user) {
+        String error;
         if (userRepository.existsUserByEmail(user.getEmail())) {
-            return null;
+            error = "email already registered in the system";
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
         } else {
-            return userRepository.save(user);
+            userRepository.save(user);
+            UserDTOReturn userDTOReturn = UserMapper.INSTANCE.userToUserDTOReturn(user);
+            return ResponseEntity.created(java.net.URI.create("")).body(userDTOReturn);
         }
     }
 
-    public List<UserDTO> getAllUser() {
+    public ResponseEntity<Object> getAll() {
         List<User> allUser = userRepository.findAll();
         List<UserDTO> allUserDTO = new ArrayList<>();
         for (User user :
                 allUser) {
             allUserDTO.add(UserMapper.INSTANCE.userToUserDTO(user));
         }
-        return allUserDTO;
+        return ResponseEntity.ok().body(allUserDTO);
     }
-
-
 }
