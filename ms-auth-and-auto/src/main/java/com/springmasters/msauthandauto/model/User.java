@@ -2,7 +2,6 @@ package com.springmasters.msauthandauto.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -18,7 +17,6 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "userRole", fetch = FetchType.EAGER)
-
     private List<Role> userRoles;
 
     public User(String name, String email, String password) {
