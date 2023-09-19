@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -55,5 +56,14 @@ public class UserService {
             allUserDTO.add(UserMapper.INSTANCE.userToUserDTO(user));
         }
         return ResponseEntity.ok().body(allUserDTO);
+    }
+    public ResponseEntity<Object> deleteUser(Integer id){
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()){
+            userRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
