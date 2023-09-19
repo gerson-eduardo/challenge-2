@@ -32,6 +32,11 @@ public class UserController {
         return userService.createUser(user);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTOReturn> findById(@PathVariable int id){
+        return userService.findById(id);
+    }
+
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUserDTO() {
         return userService.getAll();
