@@ -11,5 +11,10 @@ public interface MsAuthAndAutoFeign {
     @GetMapping(value = "api/users/{id_user}/microsservice/{id_microsservice}",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Object> getAllByIdUserIdMicrosservce(@PathVariable Integer id_user,
-                                       @PathVariable Integer id_microsservice);
+                                                        @PathVariable Integer id_microsservice);
+
+    @GetMapping(value = "api/users/{id_microsservice}",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Object> getByIdMicrosservice(@PathVariable Integer id_microsservice);
+
 }
