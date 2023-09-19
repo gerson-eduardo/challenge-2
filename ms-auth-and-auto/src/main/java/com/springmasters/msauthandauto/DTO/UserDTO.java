@@ -1,24 +1,21 @@
 package com.springmasters.msauthandauto.DTO;
 
 import java.util.List;
-
-import com.springmasters.msauthandauto.model.Role;
-
 import java.util.Objects;
 
 public class UserDTO {
     private String name;
     private String email;
-    private List<Role> userRoles;
+    private List<MicrosserviceDTO> microsservices;
 
 
     public UserDTO() {
     }
 
-    public UserDTO(String name, String email, List<Role> userRoles) {
+    public UserDTO(String name, String email, List<MicrosserviceDTO> microsservices) {
         this.name = name;
         this.email = email;
-        this.userRoles = userRoles;
+        this.microsservices = microsservices;
     }
 
     public String getName() {
@@ -37,12 +34,12 @@ public class UserDTO {
         this.email = email;
     }
 
-    public List<Role> getUserRoles() {
-        return this.userRoles;
+    public List<MicrosserviceDTO> getMicrosservices() {
+        return this.microsservices;
     }
 
-    public void setUserRoles(List<Role> userRoles) {
-        this.userRoles = userRoles;
+    public void setmicrosservices(List<MicrosserviceDTO> microsservices) {
+        this.microsservices = microsservices;
     }
 
     public UserDTO name(String name) {
@@ -55,8 +52,8 @@ public class UserDTO {
         return this;
     }
 
-    public UserDTO userRoles(List<Role> userRoles) {
-        setUserRoles(userRoles);
+    public UserDTO microsservices(List<MicrosserviceDTO> microsservices) {
+        setmicrosservices(microsservices);
         return this;
     }
 
@@ -68,12 +65,12 @@ public class UserDTO {
             return false;
         }
         UserDTO userDTO = (UserDTO) o;
-        return Objects.equals(name, userDTO.name) && Objects.equals(email, userDTO.email) && Objects.equals(userRoles, userDTO.userRoles);
+        return Objects.equals(name, userDTO.name) && Objects.equals(email, userDTO.email) && Objects.equals(microsservices, userDTO.microsservices);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, userRoles);
+        return Objects.hash(name, email, microsservices);
     }
 
     @Override
@@ -81,7 +78,7 @@ public class UserDTO {
         return "{" +
                 " name='" + getName() + "'" +
                 ", email='" + getEmail() + "'" +
-                ", userRoles='" + getUserRoles() + "'" +
+                ", microsservices='" + getMicrosservices() + "'" +
                 "}";
     }
 

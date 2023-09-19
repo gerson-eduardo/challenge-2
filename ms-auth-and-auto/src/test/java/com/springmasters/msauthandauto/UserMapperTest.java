@@ -39,7 +39,7 @@ public class UserMapperTest {
     public void testUserToUserDTOWithValidUser() {
         UserDTO userDTOReturn = UserMapper.INSTANCE.userToUserDTO(user);
 
-        assertEquals(user.getUserRoles(), userDTOReturn.getUserRoles());
+        assertEquals(user.getUserRoles().get(0).getMicroservice().getNameMicroservice(), userDTOReturn.getMicrosservices().get(0).getName());        assertEquals(user.getUserRoles().get(0).getRoleUser(), userDTOReturn.getMicrosservices().get(0).getRoleUser());
         assertEquals(user.getName(), userDTOReturn.getName());
         assertEquals(user.getEmail(), userDTOReturn.getEmail());
     }
