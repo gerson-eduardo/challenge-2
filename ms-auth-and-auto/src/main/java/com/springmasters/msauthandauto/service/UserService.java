@@ -29,6 +29,12 @@ public class UserService {
         this.roleRepository = roleRepository;
     }
 
+    public ResponseEntity<UserDTOReturn> findById(int id){
+        User user = userRepository.findById(id);
+        UserDTOReturn userDTOReturn= UserMapper.INSTANCE.userToUserDTOReturn(user);
+        return ResponseEntity.ok().body(userDTOReturn);
+    }
+
     public ResponseEntity<UserDTOReturn> createUser(User user) {
         String error;
         if (userRepository.existsUserByEmail(user.getEmail())) {
