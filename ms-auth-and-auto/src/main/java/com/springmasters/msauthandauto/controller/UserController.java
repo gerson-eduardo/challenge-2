@@ -1,20 +1,13 @@
 package com.springmasters.msauthandauto.controller;
 
-import com.springmasters.msauthandauto.DTO.Mapper.UserMapper;
-import com.springmasters.msauthandauto.DTO.UserDTO;
-import com.springmasters.msauthandauto.DTO.UserDTOReturn;
-import com.springmasters.msauthandauto.model.Role;
 import com.springmasters.msauthandauto.model.User;
 import com.springmasters.msauthandauto.service.RoleService;
 import com.springmasters.msauthandauto.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/users/", consumes = MediaType.APPLICATION_JSON_VALUE)

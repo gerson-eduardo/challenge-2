@@ -1,7 +1,6 @@
 package com.springmasters.msauthandauto.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -51,7 +50,6 @@ public class Role {
 
     public Role(User userRole, userRole roleUser) {
         this.userRole = userRole;
-        this.microservice = microservice;
         this.roleUser = roleUser;
     }
 

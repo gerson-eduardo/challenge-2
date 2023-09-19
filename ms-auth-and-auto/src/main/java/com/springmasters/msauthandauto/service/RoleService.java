@@ -1,6 +1,6 @@
 package com.springmasters.msauthandauto.service;
 
-import com.springmasters.msauthandauto.DTO.BindDTOReturn;
+import com.springmasters.msauthandauto.DTO.BindMsDTOReturn;
 import com.springmasters.msauthandauto.model.Microservice;
 import com.springmasters.msauthandauto.model.Role;
 import com.springmasters.msauthandauto.model.User;
@@ -47,7 +47,7 @@ public class RoleService {
             roleRepository.save(role);
         }
 
-        BindDTOReturn bindDTO = new BindDTOReturn(user.getEmail(), microservice.getNameMicroservice());
+        BindMsDTOReturn bindDTO = new BindMsDTOReturn(user.getEmail(), microservice.getNameMicroservice());
         return ResponseEntity.ok(bindDTO);
     }
 

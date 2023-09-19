@@ -3,7 +3,6 @@ package com.springmasters.msauthandauto.service;
 import org.springframework.stereotype.Service;
 import com.springmasters.msauthandauto.model.User;
 import com.springmasters.msauthandauto.model.Role;
-import com.springmasters.msauthandauto.model.Role.userRole;
 import com.springmasters.msauthandauto.model.Microservice;
 import java.util.HashMap;
 import java.util.Map;
