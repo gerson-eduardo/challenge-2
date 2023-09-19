@@ -1,8 +1,14 @@
 package com.springmasters.msauthandauto.controller;
 
+import com.springmasters.msauthandauto.DTO.BindMsDTOReturn;
+import com.springmasters.msauthandauto.DTO.UserDTO;
+import com.springmasters.msauthandauto.DTO.UserDTOReturn;
 import com.springmasters.msauthandauto.model.User;
 import com.springmasters.msauthandauto.service.RoleService;
 import com.springmasters.msauthandauto.service.UserService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,17 +32,22 @@ public class UserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> createUser(@RequestBody User user) {
+    public ResponseEntity<UserDTOReturn> createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTOReturn> findById(@PathVariable int id){
+        return userService.findById(id);
+    }
+
     @GetMapping
-    public ResponseEntity<Object> getAllUserDTO() {
+    public ResponseEntity<List<UserDTO>> getAllUserDTO() {
         return userService.getAll();
     }
 
     @PutMapping(value = "{id_user}/microsservice/{id_microsservice}")
-    public ResponseEntity<Object> bindUserMicrosserice(@PathVariable Integer id_user, @PathVariable Integer id_microsservice) {
+    public ResponseEntity<BindMsDTOReturn> bindUserMicrosserice(@PathVariable Integer id_user, @PathVariable Integer id_microsservice) {
         return roleService.bindUserMicroservice(id_user, id_microsservice);
     }
     @Autowired

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +30,17 @@ public class UserService {
         this.roleRepository = roleRepository;
     }
 
-    public ResponseEntity<Object> createUser(User user) {
+    public ResponseEntity<UserDTOReturn> findById(int id){
+        User user = userRepository.findById(id);
+        UserDTOReturn userDTOReturn= UserMapper.INSTANCE.userToUserDTOReturn(user);
+        return ResponseEntity.ok().body(userDTOReturn);
+    }
+
+    public ResponseEntity<UserDTOReturn> createUser(User user) {
         String error;
         if (userRepository.existsUserByEmail(user.getEmail())) {
             error = "email already registered in the system";
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+           throw new ResponseStatusException(HttpStatus.CONFLICT, error);
         } else {
             userRepository.save(user);
             UserDTOReturn userDTOReturn = UserMapper.INSTANCE.userToUserDTOReturn(user);
@@ -41,7 +48,7 @@ public class UserService {
         }
     }
 
-    public ResponseEntity<Object> getAll() {
+    public ResponseEntity<List<UserDTO>> getAll() {
         List<User> allUser = userRepository.findAll();
         List<UserDTO> allUserDTO = new ArrayList<>();
         for (User user :

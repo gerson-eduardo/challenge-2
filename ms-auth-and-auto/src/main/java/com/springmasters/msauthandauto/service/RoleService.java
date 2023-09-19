@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -27,16 +28,19 @@ public class RoleService {
         this.roleRepository = roleRepository;
     }
 
-    public ResponseEntity<Object> bindUserMicroservice(Integer userId, Integer microserviceId) {
+    public ResponseEntity<BindMsDTOReturn> bindUserMicroservice(Integer userId, Integer microserviceId) {
         Optional<User> userOptional = userRepository.findById(userId);
         Optional<Microservice> microserviceOptional = microserviceRepository.findById(microserviceId);
+        String error;
 
         if (userOptional.isEmpty()) {
-            return createNotFoundResponse("User not found with ID: " + userId);
+            error = "User not found with ID: " + userId;
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, error);
         }
 
         if (microserviceOptional.isEmpty()) {
-            return createNotFoundResponse("Microservice not found with ID: " + microserviceId);
+            error = "Microservice not found with ID: " + microserviceId;
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, error);
         }
 
         User user = userOptional.get();
@@ -45,13 +49,12 @@ public class RoleService {
         if (!roleRepository.existsRoleByUserRoleAndMicroservice(user, microservice)) {
             Role role = new Role(user, microservice, Role.userRole.USER);
             roleRepository.save(role);
+        } else{
+            error = "user already linked to the microservice";
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, error);
         }
 
         BindMsDTOReturn bindDTO = new BindMsDTOReturn(user.getEmail(), microservice.getNameMicroservice());
         return ResponseEntity.ok(bindDTO);
-    }
-
-    private ResponseEntity<Object> createNotFoundResponse(String errorMessage) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }
 }

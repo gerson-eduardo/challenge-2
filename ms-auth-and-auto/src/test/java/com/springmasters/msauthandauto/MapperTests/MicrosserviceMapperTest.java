@@ -1,4 +1,4 @@
-package com.springmasters.msauthandauto;
+package com.springmasters.msauthandauto.MapperTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,6 @@ public class MicrosserviceMapperTest {
     
     @BeforeEach
     public void setUp() {
-        // Crie instâncias de Microservice e User para testar
         microservice = new Microservice();
         microservice.setNameMicroservice("Microservice Name");
 
@@ -32,22 +31,19 @@ public class MicrosserviceMapperTest {
 
     @Test
     public void testMsToBindMs() {
-        // Chame o método a ser testado
         BindMsDTOReturn result = MicroserviceMapper.INSTANCE.msToBindMs(microservice, user);
 
-        // Realize as asserções
-        assertEquals("user@example.com", result.getEmail());
-        assertEquals("Microservice Name", result.getMicroservice());
+        assertEquals("user@example.com", result.getEmail(), "Expected email does not match returned email");
+        assertEquals("Microservice Name", result.getMicroservice(), "Expected microservice name does not match returned name");
     }
 
     @Test
     public void testMsTomsDTO() {
-        // Chame o método a ser testado
         MicrosserviceDTO result = MicroserviceMapper.INSTANCE.msTomsDTO(microservice, role);
 
-        // Realize as asserções
-        assertEquals("Microservice Name", result.getName());
-        assertEquals(userRole.ADMIN, result.getRoleUser());
+        assertEquals("Microservice Name", result.getName(), "Expected microservice name does not match returned name");
+        assertEquals(userRole.ADMIN, result.getRoleUser(), "Expected user role does not match returned role");
     }
 }
+
 
