@@ -25,4 +25,10 @@ public class msBController {
                                              @PathVariable Integer id_microsservice) {
         return msAuthAndAutoFeign.getAllByIdUserIdMicrosservce(id_user, id_microsservice);
     }
+
+    //Esta rota de resposta ainda não foi implementada no ms-auth-and-auto
+    @GetMapping(value = "microsservice/{id_microsservice}")
+    public ResponseEntity<Object> getAllByMicrosservice(@PathVariable Integer id_microsservice) {
+        return msAuthAndAutoFeign.getByIdMicrosservice(id_microsservice);
+    }
 }
