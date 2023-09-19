@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.ms</groupId>
-	<artifactId>b</artifactId>
+	<artifactId>ms-b</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>b</name>
 	<description>b</description>
