@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "api/scholar/", consumes = MediaType.APPLICATION_JSON_VALUE)
 
-public class msCController {
+public class MsCController {
     private final MsAuthAndAutoFeign msAuthAndAutoFeign;
 
     @Autowired
-    public msCController(MsAuthAndAutoFeign msAuthAndAutoFeign){
+    public MsCController(MsAuthAndAutoFeign msAuthAndAutoFeign){
         this.msAuthAndAutoFeign = msAuthAndAutoFeign;
     }
     @GetMapping(value = "{id_user}/microsservice/{id_microsservice}")
