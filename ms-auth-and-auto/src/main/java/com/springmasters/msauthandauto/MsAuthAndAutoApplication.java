@@ -13,16 +13,11 @@ public class MsAuthAndAutoApplication {
     @Bean
     public CommandLineRunner init(@Autowired MicroserviceRepository microserviceRepository) {
         return args -> {
-            Microservice msScholarA = new Microservice("scholar a");
-            microserviceRepository.save(msScholarA);
-            Microservice msScholarB = new Microservice("scholar b");
-            microserviceRepository.save(msScholarB);
-            Microservice msScholarC = new Microservice("scholar c");
-            microserviceRepository.save(msScholarC);
-            Microservice msScholarD = new Microservice("scholar d");
-            microserviceRepository.save(msScholarD);
-            Microservice msScholarE = new Microservice("scholar e");
-            microserviceRepository.save(msScholarE);
+            microserviceRepository.save(new Microservice("scholar a"));
+            microserviceRepository.save(new Microservice("scholar b"));
+            microserviceRepository.save(new Microservice("scholar c"));
+            microserviceRepository.save(new Microservice("scholar d"));
+            microserviceRepository.save(new Microservice("scholar e"));
         };
     }
 
