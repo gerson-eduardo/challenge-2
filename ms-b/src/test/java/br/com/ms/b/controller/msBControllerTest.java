@@ -41,5 +41,16 @@ class MsBControllerTest {
 
     @Test
     void getAllByMicrosservice() {
+        // Simula o comportamento do feign client
+        when(msAuthAndAutoFeign.getByIdMicrosservice(anyInt()))
+                .thenReturn(new ResponseEntity<>("some-body", HttpStatus.OK));
+
+        ResponseEntity<Object> response = msBController.getAllByMicrosservice(3);
+
+        // Verifica se o método do feign client foi chamado com o argumento correto
+        verify(msAuthAndAutoFeign, times(1)).getByIdMicrosservice(3);
+
+        // Verifica se a resposta HTTP é a esperada
+        assert(response.getStatusCode()).equals(HttpStatus.OK);
     }
 }
