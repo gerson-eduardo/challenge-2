@@ -13,7 +13,7 @@ public interface MsAuthAndAutoFeign {
     ResponseEntity<Object> getAllByIdUserIdMicrosservce(@PathVariable Integer id_user,
                                                         @PathVariable Integer id_microsservice);
 
-    @GetMapping(value = "api/microsservices/{id_microsservice}",
+    @GetMapping(value = "api/roles/{id_microsservice}",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Object> getByIdMicrosservice(@PathVariable Integer id_microsservice);
 }
