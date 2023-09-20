@@ -9,4 +9,5 @@
     <p>-Via the GET request: /ms-auth-and-auto/api/users/. All users and the microservices to which they have access will be listed. Your role will also be returned. Data Access Objects (DTO) and Mappers           were used to enable the projection of users' sensitive data.</p>
     <p>- It is also possible to make the GET request: /ms-auth-and-auto/api/users/{id_user} to obtain the occurrence of a specific user.</p>
     <p>- It is possible to delete a user's occurrence using a delete request: /ms-auth-and-auto/api/users/{id_user}. Where the user will be deleted from the database and disconnected from all microservices.</p>
+    <p>- The role of a user registered in a microservice can be updated in the following POST request: ms-auth-and-auto/api/users/id_user/updateRole/id_microsservice/string_role. String role is "User" or "Admin".</p>
 </p>
