@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import springmasters.com.ms.d.Consumer.AuthAndAutoConsumer;
+import springmasters.com.ms.d.Consumer.Microsservice;
 import springmasters.com.ms.d.Consumer.Role;
 import springmasters.com.ms.d.Consumer.User;
+import springmasters.com.ms.d.DTO.MicrosserviceDTO;
 import springmasters.com.ms.d.DTO.UserDTO;
 import springmasters.com.ms.d.DTO.Mapper.UserMapper;
 
@@ -32,5 +34,10 @@ public class MsScholaService {
 
         UserDTO userDTO = UserMapper.INSTANCE.userToUserDTO(user, role);
         return ResponseEntity.ok(userDTO);
+    }
+
+    public ResponseEntity<MicrosserviceDTO> getUsersByMicrosserviceId(Integer idMicrosservice){
+        Microsservice microsservice = consumer.getMicrosservice(idMicrosservice);
+        List<Role> roles = 
     }
 }
