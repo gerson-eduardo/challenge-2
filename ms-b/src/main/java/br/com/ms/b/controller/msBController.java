@@ -19,14 +19,12 @@ public class msBController {
         this.msAuthAndAutoFeign = msAuthAndAutoFeign;
     }
 
-    //Esta rota de resposta ainda não foi implementada no ms-auth-and-auto
     @GetMapping(value = "{id_user}/microsservice/{id_microsservice}")
     public ResponseEntity<Object> getAllUser(@PathVariable Integer id_user,
                                              @PathVariable Integer id_microsservice) {
         return msAuthAndAutoFeign.getAllByIdUserIdMicrosservce(id_user, id_microsservice);
     }
 
-    //Esta rota de resposta ainda não foi implementada no ms-auth-and-auto
     @GetMapping(value = "microsservice/{id_microsservice}")
     public ResponseEntity<Object> getAllByMicrosservice(@PathVariable Integer id_microsservice) {
         return msAuthAndAutoFeign.getByIdMicrosservice(id_microsservice);
