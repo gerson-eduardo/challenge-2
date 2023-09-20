@@ -3,7 +3,10 @@ package com.springmasters.msauthandauto.service;
 import com.springmasters.msauthandauto.DTO.Mapper.UserMapper;
 import com.springmasters.msauthandauto.DTO.UserDTO;
 import com.springmasters.msauthandauto.DTO.UserDTOReturn;
+import com.springmasters.msauthandauto.model.Microservice;
+import com.springmasters.msauthandauto.model.Role;
 import com.springmasters.msauthandauto.model.User;
+import com.springmasters.msauthandauto.model.Role.userRole;
 import com.springmasters.msauthandauto.repository.MicroserviceRepository;
 import com.springmasters.msauthandauto.repository.RoleRepository;
 import com.springmasters.msauthandauto.repository.UserRepository;
@@ -57,6 +60,50 @@ public class UserService {
         }
         return ResponseEntity.ok().body(allUserDTO);
     }
+
+
+    public ResponseEntity<UserDTO> updateRoleAdmin(Integer idUser, Integer idMicrosservice){
+        Optional<Microservice> microsservice = microserviceRepository.findById(idUser);
+        Optional<User> user = userRepository.findById(idUser);
+
+        if(microsservice.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "not fount microsservice with id: " + idMicrosservice);
+        if(microsservice.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "not fount user with id: " + idUser);
+        Optional<Role> role = roleRepository.findByMicroserviceAndUserRole(microsservice.get(), user.get());
+        if(role.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_MODIFIED, "not found user and microsservice realtship");
+        if (role.get().getRoleUser().equals(userRole.USER)) {
+            role.get().setRoleUser(userRole.ADMIN);
+        } else{
+            throw new ResponseStatusException(HttpStatus.NOT_MODIFIED, "User is a ADMIN");
+        }
+        roleRepository.save(role.get());
+        user = userRepository.findById(idUser);
+        return ResponseEntity.ok(UserMapper.INSTANCE.userToUserDTO(user.get()));
+    }
+
+    public ResponseEntity<UserDTO> updateRoleUser(Integer idUser, Integer idMicrosservice){
+        Optional<Microservice> microsservice = microserviceRepository.findById(idUser);
+        Optional<User> user = userRepository.findById(idUser);
+
+        if(microsservice.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "not fount microsservice with id: " + idMicrosservice);
+        if(microsservice.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "not fount user with id: " + idUser);
+        Optional<Role> role = roleRepository.findByMicroserviceAndUserRole(microsservice.get(), user.get());
+        if(role.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_MODIFIED, "not found user and microsservice realtship");
+        if (role.get().getRoleUser().equals(userRole.ADMIN)) {
+            role.get().setRoleUser(userRole.USER);
+        } else{
+            throw new ResponseStatusException(HttpStatus.NOT_MODIFIED, "User is a USER");
+        }
+        roleRepository.save(role.get());
+        user = userRepository.findById(idUser);
+        return ResponseEntity.ok(UserMapper.INSTANCE.userToUserDTO(user.get()));
+    }
+
     public ResponseEntity<Object> deleteUser(Integer id){
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()){

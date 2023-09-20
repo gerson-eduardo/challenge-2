@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "api/users/", consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "api/users/")
 public class UserController {
     private final UserService userService;
     private final RoleService roleService;
@@ -63,5 +63,15 @@ public class UserController {
         responseMessage.put("message", "User " + id + " successfully deleted.");
 
         return ResponseEntity.ok(responseMessage);
+    }
+
+    @PostMapping(value = "{id_user}/updateRole/{id_microsservice}/Admin")
+    public ResponseEntity<UserDTO> updateRoleAdmin(@PathVariable Integer id_user, @PathVariable Integer id_microsservice){
+        return userService.updateRoleAdmin(id_user, id_microsservice);
+    }
+
+    @PostMapping(value = "{id_user}/updateRole/{id_microsservice}/User")
+    public ResponseEntity<UserDTO> updateRoleUser(@PathVariable Integer id_user, @PathVariable Integer id_microsservice){
+        return userService.updateRoleUser(id_user, id_microsservice);
     }
 }
