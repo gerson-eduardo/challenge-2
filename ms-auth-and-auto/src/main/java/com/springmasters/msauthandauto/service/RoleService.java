@@ -2,6 +2,7 @@ package com.springmasters.msauthandauto.service;
 
 import com.springmasters.msauthandauto.DTO.BindMsDTOReturn;
 import com.springmasters.msauthandauto.DTO.RoleDTO;
+import com.springmasters.msauthandauto.DTO.RoleWithUserDTO;
 import com.springmasters.msauthandauto.DTO.Mapper.RoleMapper;
 import com.springmasters.msauthandauto.model.Microservice;
 import com.springmasters.msauthandauto.model.Role;
@@ -15,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -73,5 +76,16 @@ public class RoleService {
         if(role.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"user and microservice relationship was not found!");
         return ResponseEntity.ok(RoleMapper.INSTANCE.roleToRoleDTO(role.get()));
+    }
+
+    public ResponseEntity<List<RoleWithUserDTO>> findByMicrosservice(Integer idMicrosservice){
+        if(microserviceRepository.findById(idMicrosservice).isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "not found Microsservice with id: ");
+        List<RoleWithUserDTO> rolesDTO = new ArrayList<>();
+        List<Role> roles = roleRepository.findByMicroservice(microserviceRepository.findById(idMicrosservice).get());
+        for(Role role:roles){
+            rolesDTO.add(RoleMapper.INSTANCE.roleToRoleWithUserDTO(role));
+        }
+        return ResponseEntity.ok(rolesDTO);
     }
 }

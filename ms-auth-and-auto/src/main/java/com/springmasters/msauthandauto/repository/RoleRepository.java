@@ -14,4 +14,5 @@ public interface RoleRepository extends JpaRepository<Role, Integer>{
      Boolean existsRoleByUserRoleAndMicroservice(User userRole, Microservice microservice);
 
      Optional<Role> findByMicroserviceAndUserRole(Microservice microservice, User userRole);
+     List<Role> findByMicroservice(Microservice microservice);
 }
