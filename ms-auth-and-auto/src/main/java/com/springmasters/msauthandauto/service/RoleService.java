@@ -1,6 +1,8 @@
 package com.springmasters.msauthandauto.service;
 
 import com.springmasters.msauthandauto.DTO.BindMsDTOReturn;
+import com.springmasters.msauthandauto.DTO.RoleDTO;
+import com.springmasters.msauthandauto.DTO.Mapper.RoleMapper;
 import com.springmasters.msauthandauto.model.Microservice;
 import com.springmasters.msauthandauto.model.Role;
 import com.springmasters.msauthandauto.model.User;
@@ -61,7 +63,7 @@ public class RoleService {
         return ResponseEntity.ok(bindDTO);
     }
 
-    public ResponseEntity<userRole> findByUserAndMicrosservice(Integer userId, Integer microsserviceId){
+    public ResponseEntity<RoleDTO> findByUserAndMicrosservice(Integer userId, Integer microsserviceId){
         Optional<User> user = userRepository.findById(userId);
         Optional<Microservice> microsservice = microserviceRepository.findById(microsserviceId);
 
@@ -73,6 +75,6 @@ public class RoleService {
         Optional<Role> role = roleRepository.findByMicroserviceAndUserRole(microsservice.get(), user.get());
         if(role.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"user and microservice relationship was not found!");
-        return ResponseEntity.ok(role.get().getRoleUser());
+        return ResponseEntity.ok(RoleMapper.INSTANCE.roleToRoleDTO(role.get()));
     }
 }
