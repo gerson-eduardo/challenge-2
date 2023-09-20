@@ -1,4 +1,4 @@
-package br.com.ms.e.feingClient;
+package br.com.ms.e.feignClient;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;

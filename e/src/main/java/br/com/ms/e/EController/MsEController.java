@@ -1,7 +1,7 @@
 package br.com.ms.e.EController;
 
 
-import br.com.ms.e.feingClient.MsAuthAndAutoFeign;
+import br.com.ms.e.feignClient.MsAuthAndAutoFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
