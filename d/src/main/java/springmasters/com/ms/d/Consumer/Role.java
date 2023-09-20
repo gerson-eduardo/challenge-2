@@ -4,7 +4,6 @@ import java.util.Objects;
 public class Role {
     private String role;
 
-
     public Role() {
     }
 
