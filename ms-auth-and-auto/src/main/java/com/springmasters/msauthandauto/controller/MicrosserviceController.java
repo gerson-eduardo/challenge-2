@@ -1,7 +1,6 @@
 package com.springmasters.msauthandauto.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springmasters.msauthandauto.DTO.MicrosserviceDTOReturn;
-import com.springmasters.msauthandauto.DTO.RoleDTO;
-import com.springmasters.msauthandauto.model.Role.userRole;
 import com.springmasters.msauthandauto.service.MicrosserviceService;
 
 @RestController

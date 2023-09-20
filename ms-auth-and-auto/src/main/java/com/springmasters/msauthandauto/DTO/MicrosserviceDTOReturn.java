@@ -1,6 +1,5 @@
 package com.springmasters.msauthandauto.DTO;
 
-import com.springmasters.msauthandauto.model.Role.userRole;
 import java.util.Objects;
 
 public class MicrosserviceDTOReturn {

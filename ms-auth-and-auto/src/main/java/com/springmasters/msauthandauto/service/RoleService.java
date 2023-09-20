@@ -80,7 +80,7 @@ public class RoleService {
 
     public ResponseEntity<List<RoleWithUserDTO>> findByMicrosservice(Integer idMicrosservice){
         if(microserviceRepository.findById(idMicrosservice).isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "not found Microsservice with id: ");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "not found Microsservice with id: " + idMicrosservice);
         List<RoleWithUserDTO> rolesDTO = new ArrayList<>();
         List<Role> roles = roleRepository.findByMicroservice(microserviceRepository.findById(idMicrosservice).get());
         for(Role role:roles){
