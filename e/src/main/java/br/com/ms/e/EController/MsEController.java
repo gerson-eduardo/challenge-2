@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "api/scholar/", consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "api/scholar/")
 public class MsEController {
     private final MsAuthAndAutoFeign msAuthAndAutoFeign;
 
