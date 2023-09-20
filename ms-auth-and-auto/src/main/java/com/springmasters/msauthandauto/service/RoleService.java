@@ -6,7 +6,6 @@ import com.springmasters.msauthandauto.DTO.Mapper.RoleMapper;
 import com.springmasters.msauthandauto.model.Microservice;
 import com.springmasters.msauthandauto.model.Role;
 import com.springmasters.msauthandauto.model.User;
-import com.springmasters.msauthandauto.model.Role.userRole;
 import com.springmasters.msauthandauto.repository.MicroserviceRepository;
 import com.springmasters.msauthandauto.repository.RoleRepository;
 import com.springmasters.msauthandauto.repository.UserRepository;
@@ -17,8 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
-
-import javax.swing.text.html.Option;
 
 @Service
 public class RoleService {
