@@ -17,6 +17,12 @@ public class MsAuthAndAutoApplication {
             microserviceRepository.save(msScholarA);
             Microservice msScholarB = new Microservice("scholar b");
             microserviceRepository.save(msScholarB);
+            Microservice msScholarC = new Microservice("scholar c");
+            microserviceRepository.save(msScholarC);
+            Microservice msScholarD = new Microservice("scholar d");
+            microserviceRepository.save(msScholarD);
+            Microservice msScholarE = new Microservice("scholar e");
+            microserviceRepository.save(msScholarE);
         };
     }
 
