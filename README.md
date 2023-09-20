@@ -13,11 +13,10 @@
 </p>
 
 <p>
-  <h3>About the ms-scholar-b</h3>
+  <h3>About the ms-scholar-{x}(change x for a,b,c,d,e)</h3> 
   <p>- The general purpose of the ms-scholar microservice is to consume functions provided by the core ms-auth-and-auto microservice.</p>
   <p>- Using Openfeign, other microservices can make a request to the center. That way:</p>
-  <p>- With the GET request made in the following path: /ms-b/api/scholar/{id_user}/microsservice/{id_microserice}. It is possible to obtain permission from the user (user_id) entered and their role in the       microservice (if registered in it).</p>
-  <p>- It is possible to obtain a list of all users and their roles in a given microservice through the GET request: /ms-b/api/scholar/microsservice/{id_microsservice}.</p>
+  <p>- With the GET request made in the following path: /ms-{x}/api/scholar/{id_user}/microsservice/{id_microserice}. It is possible to obtain permission from the user (user_id) entered and their role in the       microservice (if registered in it).</p>
+  <p>- It is possible to obtain a list of all users and their roles in a given microservice through the GET request: /ms-{x}/api/scholar/microsservice/{id_microsservice}.</p>
   <p>- The role of a user registered in a microservice can be updated in the following POST request: ms-auth-and-auto/api/users/id_user/updateRole/id_microsservice/string_role. String role is "User" or "Admin".</p>
-
 </p>
