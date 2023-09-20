@@ -25,7 +25,7 @@ public class Role {
     private User userRole;
 
     public static final Integer ADMIN = 1;
-    public static final Integer USER = 1;
+    public static final Integer USER = 0;
 
     @ManyToOne
     @JoinColumn(name = "microservice_id")

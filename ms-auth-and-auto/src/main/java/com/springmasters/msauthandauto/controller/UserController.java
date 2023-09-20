@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 import com.springmasters.msauthandauto.repository.UserRepository;
 import java.util.HashMap;
 import java.util.Map;

@@ -1,9 +1,12 @@
 package com.springmasters.msauthandauto.service;
 
 import com.springmasters.msauthandauto.DTO.BindMsDTOReturn;
+import com.springmasters.msauthandauto.DTO.RoleDTO;
+import com.springmasters.msauthandauto.DTO.Mapper.RoleMapper;
 import com.springmasters.msauthandauto.model.Microservice;
 import com.springmasters.msauthandauto.model.Role;
 import com.springmasters.msauthandauto.model.User;
+import com.springmasters.msauthandauto.model.Role.userRole;
 import com.springmasters.msauthandauto.repository.MicroserviceRepository;
 import com.springmasters.msauthandauto.repository.RoleRepository;
 import com.springmasters.msauthandauto.repository.UserRepository;
@@ -14,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
+
+import javax.swing.text.html.Option;
 
 @Service
 public class RoleService {
@@ -56,5 +61,20 @@ public class RoleService {
 
         BindMsDTOReturn bindDTO = new BindMsDTOReturn(user.getEmail(), microservice.getNameMicroservice());
         return ResponseEntity.ok(bindDTO);
+    }
+
+    public ResponseEntity<RoleDTO> findByUserAndMicrosservice(Integer userId, Integer microsserviceId){
+        Optional<User> user = userRepository.findById(userId);
+        Optional<Microservice> microsservice = microserviceRepository.findById(microsserviceId);
+
+        if(user.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found with ID: " + userId);
+        if(microsservice.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Microsservice not found with ID: " + microsserviceId);
+        
+        Optional<Role> role = roleRepository.findByMicroserviceAndUserRole(microsservice.get(), user.get());
+        if(role.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"user and microservice relationship was not found!");
+        return ResponseEntity.ok(RoleMapper.INSTANCE.roleToRoleDTO(role.get()));
     }
 }
