@@ -10,5 +10,4 @@ public class DApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DApplication.class, args);
 	}
-
 }
