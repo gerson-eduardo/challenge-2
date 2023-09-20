@@ -13,7 +13,7 @@
 </p>
 
 <p>
-  <h3>About ms-scholar-b</h3>
+  <h3>About the ms-scholar's(a,b,c,d,e)</h3>
   <p>- The general purpose of the ms-scholar-b microservice is to consume functions provided by the core ms-auth-and-auto microservice.</p>
   <p>- Using Openfeign, other microservices can make a request to the center. That way:</p>
   <p>- With the GET request made in the following path: /ms-b/api/scholar/{id_user}/microsservice/{id_microserice}. It is possible to obtain permission from the user (user_id) entered and their role in the       microservice (if registered in it).</p>
