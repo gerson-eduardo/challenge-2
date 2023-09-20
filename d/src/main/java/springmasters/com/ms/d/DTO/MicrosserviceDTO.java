@@ -3,19 +3,21 @@ package springmasters.com.ms.d.DTO;
 import java.util.List;
 import java.util.Objects;
 
+import springmasters.com.ms.d.Consumer.RoleWithUser;
+
 public class MicrosserviceDTO {
     private Integer microsserviceId;
     private String microsserviceName;
-    private List<UserDTO> users;
+    private List<RoleWithUser> roles;
 
 
     public MicrosserviceDTO() {
     }
 
-    public MicrosserviceDTO(Integer microsserviceId, String microsserviceName, List<UserDTO> users) {
+    public MicrosserviceDTO(Integer microsserviceId, String microsserviceName, List<RoleWithUser> roles) {
         this.microsserviceId = microsserviceId;
         this.microsserviceName = microsserviceName;
-        this.users = users;
+        this.roles = roles;
     }
 
     public Integer getMicrosserviceId() {
@@ -34,12 +36,12 @@ public class MicrosserviceDTO {
         this.microsserviceName = microsserviceName;
     }
 
-    public List<UserDTO> getUsers() {
-        return this.users;
+    public List<RoleWithUser> getroles() {
+        return this.roles;
     }
 
-    public void setUsers(List<UserDTO> users) {
-        this.users = users;
+    public void setroles(List<RoleWithUser> roles) {
+        this.roles = roles;
     }
 
     public MicrosserviceDTO microsserviceId(Integer microsserviceId) {
@@ -52,8 +54,8 @@ public class MicrosserviceDTO {
         return this;
     }
 
-    public MicrosserviceDTO users(List<UserDTO> users) {
-        setUsers(users);
+    public MicrosserviceDTO roles(List<RoleWithUser> roles) {
+        setroles(roles);
         return this;
     }
 
@@ -65,12 +67,12 @@ public class MicrosserviceDTO {
             return false;
         }
         MicrosserviceDTO microsserviceDTO = (MicrosserviceDTO) o;
-        return Objects.equals(microsserviceId, microsserviceDTO.microsserviceId) && Objects.equals(microsserviceName, microsserviceDTO.microsserviceName) && Objects.equals(users, microsserviceDTO.users);
+        return Objects.equals(microsserviceId, microsserviceDTO.microsserviceId) && Objects.equals(microsserviceName, microsserviceDTO.microsserviceName) && Objects.equals(roles, microsserviceDTO.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(microsserviceId, microsserviceName, users);
+        return Objects.hash(microsserviceId, microsserviceName, roles);
     }
 
     @Override
@@ -78,7 +80,7 @@ public class MicrosserviceDTO {
         return "{" +
             " microsserviceId='" + getMicrosserviceId() + "'" +
             ", microsserviceName='" + getMicrosserviceName() + "'" +
-            ", users='" + getUsers() + "'" +
+            ", roles='" + getroles() + "'" +
             "}";
     }
     
