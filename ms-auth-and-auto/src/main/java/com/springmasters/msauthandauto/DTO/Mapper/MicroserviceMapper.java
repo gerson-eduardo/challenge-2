@@ -2,6 +2,7 @@ package com.springmasters.msauthandauto.DTO.Mapper;
 
 import com.springmasters.msauthandauto.DTO.BindMsDTOReturn;
 import com.springmasters.msauthandauto.DTO.MicrosserviceDTO;
+import com.springmasters.msauthandauto.DTO.MicrosserviceDTOReturn;
 import com.springmasters.msauthandauto.model.Microservice;
 import com.springmasters.msauthandauto.model.Role;
 import com.springmasters.msauthandauto.model.User;
@@ -20,4 +21,7 @@ public interface MicroserviceMapper {
     @Mapping(source = "microsservice.nameMicroservice", target = "name")    
     @Mapping(source = "role.roleUser", target = "roleUser")
     MicrosserviceDTO msTomsDTO(Microservice microsservice, Role role);
+
+    @Mapping(source = "nameMicroservice", target = "name")
+    MicrosserviceDTOReturn msToMsDTOReturn(Microservice microsservice);
 }
