@@ -3,6 +3,7 @@ package springmasters.com.ms.d.Service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import springmasters.com.ms.d.Consumer.AuthAndAutoConsumer;
@@ -25,11 +26,11 @@ public class MsScholaService {
         return role;
     }
 
-    public UserDTO getUserById(Integer idUser, Integer idMicrosservice){
+    public ResponseEntity<UserDTO> getUserById(Integer idUser, Integer idMicrosservice){
         User user = consumer.getUser(idUser);
         Role role = getRole(idUser, idMicrosservice);
 
         UserDTO userDTO = UserMapper.INSTANCE.userToUserDTO(user, role);
-        return userDTO;
+        return ResponseEntity.ok(userDTO);
     }
 }

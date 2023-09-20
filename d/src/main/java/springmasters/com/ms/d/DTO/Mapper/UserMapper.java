@@ -11,8 +11,8 @@ import springmasters.com.ms.d.DTO.UserDTO;
 @Mapper
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
-    
-    @Mapping(source = "name", target = "name")
+
+    @Mapping(source = "user.name", target = "name")
     @Mapping(source = "role.role", target = "role")
     public UserDTO userToUserDTO(User user, Role role); 
 }

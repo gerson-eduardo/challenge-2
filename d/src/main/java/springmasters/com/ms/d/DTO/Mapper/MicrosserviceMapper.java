@@ -27,7 +27,7 @@ public interface MicrosserviceMapper {
     }
 
     //id setting in service
-    @Mapping(source = "name", target = "microsserviceName")
+    @Mapping(source = "microsservice.name", target = "microsserviceName")
     @Mapping(target = "users", expression = "java(convertRoleInUserDTO(roles, user))")
     public MicrosserviceDTO msToMsDTO(Microsservice microsservice, User user, List<Role> roles);
 }
