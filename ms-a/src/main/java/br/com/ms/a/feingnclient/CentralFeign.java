@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "ms-auth-and-auto", url = "localhost:8080/ms-auth-and-auto/")
 public interface CentralFeign {
 
-    @GetMapping(value = "api/microservices/{id_microsservice}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "api/roles/microservices/{id_microsservice}", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Object> getByIdMicrosservice(@PathVariable Integer id_microsservice);
 
     @GetMapping(value = "api/roles/{id_user}/microsservice/{id_microsservice}", consumes = MediaType.APPLICATION_JSON_VALUE)
